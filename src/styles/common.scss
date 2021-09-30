@@ -1,0 +1,151 @@
+@import './element-variables.scss';
+
+.fe-header {
+  flex-shrink: 0;
+}
+
+.fe-navbar {
+  padding: 0 43px;
+  height: 50px;
+  color: $menu_font_color;
+  background-color: $menu_bg_color;
+  h1 {
+    font-size: 16px;
+    font-weight: 400;
+    span:last-child {
+      margin-left: 1em;
+    }
+  }
+}
+.fe-logo {
+  width: 125px;
+  height: 30px;
+  background: url('~@/assets/images/5G_logo.svg') 0 0 no-repeat;
+}
+.fe-breadcrumb {
+  position: relative;
+  padding: 0 42px;
+  height: 40px;
+  background: #fff;
+  box-shadow: 0px 2px 3px 0px rgba(204, 204, 204, 1);
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 43px;
+    width: 2px;
+    height: 0.85em;
+    background: #3d98ff;
+    transform: translateY(-50%);
+  }
+  .el-breadcrumb {
+    padding-left: 10px;
+    .el-breadcrumb__item:first-child {
+      cursor: default;
+      pointer-events: none;
+    }
+    .el-breadcrumb__item {
+      cursor: pointer;
+    }
+    .el-breadcrumb__item:last-child .el-breadcrumb__inner {
+      color: #2d98ff;
+    }
+  }
+}
+
+/* 宽高继承 */
+.fe-page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.fe-layout {
+  position: relative;
+}
+
+.fe-flex {
+  display: flex;
+}
+
+.fe-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.fe-align-center {
+  display: flex;
+  align-items: center;
+}
+
+/* flex高度自适应,禁止添加width属性 */
+.fe-flex-auto {
+  height: 100%;
+  flex: auto;
+  overflow: hidden;
+}
+
+/* 页面滚动 */
+.fe-scroll-y {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* flex-子元素水平方向左右布局 */
+.fe-flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* flex-子元素水平垂直居中 */
+.fe-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 主视图区域 */
+.fe-view {
+  padding: 16px;
+}
+
+/* 元素块 */
+.fe-box {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #fff;
+  overflow: hidden;
+}
+
+$gap: 12px;
+$gap-md: 16px;
+$gap-lg: 20px;
+/* 一般动态展示的模块建议使用外下边距 */
+/* 由于模块化设计外下边距fe-mb-sm使用频繁,可根据需要自行添加,命名格式参考retina工程 */
+.fe-mb {
+  margin: $gap;
+}
+
+/* 左右内边距使用频繁，请自行添加 */
+.fe-p {
+  padding: $gap;
+}
+.fe-px-sm {
+  padding-left: $gap;
+  padding-right: $gap;
+}
+
+.fe-p-md {
+  padding: $gap-md;
+}
+.fe-px-md {
+  padding-left: $gap-md;
+  padding-right: $gap-md;
+}
+.fe-p-lg {
+  padding: $gap-lg;
+}
+.fe-px-lg {
+  padding-left: $gap-lg;
+  padding-right: $gap-lg;
+}

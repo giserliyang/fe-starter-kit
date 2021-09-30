@@ -1,0 +1,104 @@
+.highcharts-title {
+  font-size: 0 !important;
+}
+
+.highcharts-areaspline-series,
+.highcharts-spline-series {
+  .highcharts-halo {
+    display: none;
+  }
+}
+
+/* 隐藏svg-tooltip 渲染元素为g>rect */
+.highcharts-tooltip {
+  margin-top: 10px;
+  > span:first-child {
+    margin-bottom: 16px;
+    padding: 10px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .highcharts-tooltip-box {
+    display: none;
+  }
+}
+
+/* html实现tooltip */
+.fe-hc-tooltip {
+  padding: 3px 4px 0;
+  color: #fff;
+  * {
+    line-height: 1;
+  }
+  .fe-hc-tooltip-item {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    i {
+      width: 6px;
+      height: 6px;
+      margin-right: 4px;
+      border-radius: 6px;
+    }
+    .fe-hc-val {
+      font-weight: 600;
+      margin-left: 3px;
+    }
+  }
+}
+
+/* highcharts 线条 */
+.highcharts-series-group .highcharts-series .highcharts-graph {
+  stroke-width: 2px !important;
+}
+
+.highcharts-credits {
+  display: none;
+}
+
+/* highcharts-legend */
+.fe-hc-legend {
+  width: 12px;
+  height: 2px;
+  margin-right: 4px;
+  border-radius: 2px;
+}
+
+/* 使用自定义legend */
+.highcharts-legend-item {
+  .highcharts-graph,
+  .highcharts-point {
+    display: none;
+  }
+}
+
+/* hightcharts-circle-legend */
+.fe-hc-legend-circle {
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  border-radius: 50%;
+}
+
+.fe-hc-legend,
+.fe-hc-legend-circle,
+.fe-hc-legend-label {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.highcharts-legend-item span {
+  font-size: 12px !important;
+  color: #666 !important;
+  font-weight: 400 !important;
+  line-height: 1;
+}
+
+.highcharts-legend-item-hidden .fe-hc-legend {
+  background: rgba(204, 204, 204, 1) !important;
+}
+
+.highcharts-legend-item-hidden span {
+  color: #ccc !important;
+}

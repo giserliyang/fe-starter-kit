@@ -1,0 +1,101 @@
+@import './element-variables.scss';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app,
+.retina {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #f1f4f6;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+.el-menu {
+  border-bottom: 0;
+  background-color: $menu_bg_color;
+}
+
+.el-menu.el-menu--popup.el-menu--popup-bottom-start,
+.el-menu.el-menu--popup.el-menu--popup-right-start,
+.el-menu.el-menu--popup.el-menu--popup-right-start .el-submenu,
+.el-menu.el-menu--popup.el-menu--popup-right-start .el-menu-item {
+  min-width: 140px;
+}
+
+.el-menu.el-menu--popup.el-menu--popup-bottom-start
+  .el-submenu
+  .el-submenu__title
+  .el-submenu__icon-arrow {
+  right: 10px;
+}
+.el-menu--horizontal .el-menu .el-menu-item {
+  width: auto;
+}
+.el-menu--horizontal {
+  > .el-menu-item,
+  > .el-submenu .el-submenu__title,
+  > .el-submenu:focus .el-submenu__title,
+  > .el-submenu:hover .el-submenu__title {
+    width: auto;
+    height: 50px;
+    line-height: 50px;
+    color: #d3dee4;
+  }
+  .el-menu .el-menu-item,
+  .el-menu .el-submenu__title,
+  .el-menu-item:not(.is-disabled):focus,
+  .el-menu-item:not(.is-disabled):hover {
+    color: #d3dee4;
+  }
+  > .el-menu-item:not(.is-disabled):focus,
+  > .el-menu-item:not(.is-disabled):hover,
+  > .el-submenu .el-submenu__title:hover,
+  .el-menu-item:not(.is-disabled):focus,
+  .el-menu-item:not(.is-disabled):hover {
+    background-color: $menu_bg_hover_color;
+  }
+  > .el-submenu.is-active .el-submenu__title,
+  .el-menu .el-menu-item.is-active,
+  .el-menu .el-submenu.is-active > .el-submenu__title {
+    color: $menu_font_active_color;
+    background-color: $menu_bg_hover_color;
+  }
+  .el-menu--popup-bottom-start {
+    .el-submenu__title,
+    .el-menu-item {
+      background-color: $menu_bg_color;
+    }
+  }
+}
+
+/* 设置tooltip最大宽度，否则table-cell内容过长时用户体验差 */
+.el-tooltip__popper {
+  max-width: 35%;
+  line-height: 1.3;
+}
+
+.element-pager {
+  position: relative;
+  text-align: right;
+  .el-pagination.is-background .el-pagination__sizes {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
