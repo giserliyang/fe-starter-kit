@@ -1,0 +1,7 @@
+// *在项目中改变SCSS变量，修改element-ui样式，Element的theme-chalk使用SCSS编写，theme-chalk包中的var.scss可以查询全部可改变量，详情：https://element.eleme.cn/#/zh-CN/component/custom-theme#zai-xiang-mu-zhong-gai-bian-scss-bian-liang
+/* 改变主题色变量 */
+$--color-primary: teal;
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+@import '~element-ui/packages/theme-chalk/src/index';
+// @import '~element-ui/lib/theme-chalk/index.css';
