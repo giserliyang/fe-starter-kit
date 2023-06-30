@@ -1,0 +1,585 @@
+/*  ---------------------- layout类 ----------------------  */
+
+/* 宽高继承 */
+.fe-page {
+  height: 100%;
+  // overflow: hidden; // ? 需要在不同浏览器进行测试
+}
+/* 页面滚动 */
+.fe-scroll-y {
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+/* 设置宽度为内容宽度 */
+.fe-inline-width {
+  width: auto !important;
+}
+.fe-inline-height {
+  height: auto;
+  overflow: hidden;
+}
+.fe-layout {
+  position: relative;
+}
+.fe-flex {
+  display: flex;
+}
+.fe-flex-wrap {
+  display: flex;
+  flex-flow: wrap;
+}
+.fe-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.fe-align-center {
+  display: flex;
+  align-items: center;
+}
+.fe-flex-grow {
+  flex: 1;
+  flex-wrap: nowrap;
+  min-height: 0;
+  min-width: 0;
+  // overflow: hidden;
+}
+.fe-no-shrink {
+  flex-shrink: 0;
+}
+.fe-flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+.fe-flex-around {
+  display: flex;
+  justify-content: space-around;
+}
+/* 水平垂直居中 */
+.fe-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fe-flex-stretch {
+  display: flex;
+  align-items: stretch;
+}
+.fe-flex-start {
+  display: flex;
+  align-items: flex-start;
+}
+.fe-flex-end {
+  display: flex;
+  align-items: flex-end;
+}
+.fe-height-md {
+  height: $height-md;
+}
+/*  ---------------------- 间距类 ----------------------  */
+$gapArray: (
+  (
+    l: '-xs',
+    // mini
+    v: $gap-xs,
+  ),
+  (
+    l: '-sm',
+    // small
+    v: $gap-sm,
+  ),
+  (
+    l: '-md',
+    // middle 即默认
+    v: $gap-md,
+  ),
+  (
+    l: '-lg',
+    v: $gap-lg,
+  )
+); /* mini,小，默认，中三类间距 */
+@each $gapItem in $gapArray {
+  .fe-m#{map-get($gapItem,l)} {
+    margin: map-get($gapItem, v);
+  }
+  .fe-mx#{map-get($gapItem,l)} {
+    margin-left: map-get($gapItem, v);
+    margin-right: map-get($gapItem, v);
+  }
+  .fe-my#{map-get($gapItem,l)} {
+    margin-top: map-get($gapItem, v);
+    margin-bottom: map-get($gapItem, v);
+  }
+  .fe-mt#{map-get($gapItem,l)} {
+    margin-top: map-get($gapItem, v);
+  }
+  .fe-mr#{map-get($gapItem,l)} {
+    margin-right: map-get($gapItem, v);
+  }
+  .fe-mb#{map-get($gapItem,l)} {
+    margin-bottom: map-get($gapItem, v);
+  }
+  .fe-ml#{map-get($gapItem,l)} {
+    margin-left: map-get($gapItem, v);
+  }
+  .fe-p#{map-get($gapItem,l)} {
+    padding: map-get($gapItem, v);
+  }
+  .fe-px#{map-get($gapItem,l)} {
+    padding-left: map-get($gapItem, v);
+    padding-right: map-get($gapItem, v);
+  }
+  .fe-py#{map-get($gapItem,l)} {
+    padding-top: map-get($gapItem, v);
+    padding-bottom: map-get($gapItem, v);
+  }
+  .fe-pt#{map-get($gapItem,l)} {
+    padding-top: map-get($gapItem, v);
+  }
+  .fe-pr#{map-get($gapItem,l)} {
+    padding-right: map-get($gapItem, v);
+  }
+  .fe-pb#{map-get($gapItem,l)} {
+    padding-bottom: map-get($gapItem, v);
+  }
+  .fe-pl#{map-get($gapItem,l)} {
+    padding-left: map-get($gapItem, v);
+  }
+}
+.margin-auto {
+  margin: auto;
+}
+/*  ---------------------- 字体类 ----------------------  */
+
+/* 千分位英文逗号展示 */
+.fe-longnum {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI;
+}
+.fe-font-arial {
+  font-family: Arial;
+}
+/* 字号类 */
+.fe-font-sm {
+  font-size: $font-sm;
+  // line-height: $line-height-sm;
+}
+.fe-font-md {
+  font-size: $font-md;
+  // line-height: $line-height-md;
+}
+.fe-font-lg {
+  font-size: $font-lg;
+  // line-height: $line-height-lg;
+}
+
+/* 文字颜色类 */
+.fe-color-primary {
+  color: $--color-primary;
+}
+.fe-color-success {
+  color: $--color-success;
+}
+.fe-color-warning {
+  color: $--color-warning;
+}
+.fe-color-danger {
+  color: $--color-danger;
+}
+
+/* 辅助基本文字 */
+.fe-text-muted {
+  color: $--color-text-secondary;
+}
+/* 文本超出显示省略号 */
+.fe-text-truncate {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/*  ---------------------- 装饰类 ----------------------  */
+/* 元素块 */
+.fe-box {
+  border-radius: 4px;
+  background: #fff;
+  overflow: hidden;
+}
+/* 标题栏 */
+.fe-title {
+  position: relative;
+  padding: 10px $gap-md 10px 20px;
+  color: $--color-text-primary;
+  // @extend .fe-font-md;
+  background: $background-color-active;
+  // border-radius: 2px;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    width: 2px;
+    height: 0.8em;
+    background-color: $--color-primary;
+    transform: translateY(-50%);
+  }
+}
+
+/*  背景色 */
+.fe-bg-primary {
+  background-color: $--color-primary;
+}
+.fe-bg-warning {
+  background-color: $--color-warning;
+}
+.fe-bg-success {
+  background-color: $--color-success;
+}
+.fe-bg-danger {
+  background-color: $--color-danger;
+}
+.fe-bg-active {
+  background-color: $background-color-active;
+}
+.fe-bg-base {
+  background-color: $--background-color-base;
+}
+
+/* 鼠标行为 */
+.cursor-pointer {
+  cursor: pointer;
+}
+.not-allowed {
+  cursor: not-allowed;
+}
+/* 边框,单边边框请务必使用box-shodow实现，避免奇数宽度或者高度问题，特别是满屏情况非常建议使用box-shadow */
+.fe-border {
+  border: 1px solid $--border-color-base;
+}
+.fe-bd {
+  box-shadow: inset 0 0 0 1px $--border-color-base;
+}
+.fe-bd-t {
+  box-shadow: inset 0 1px 0 0 $--border-color-base;
+}
+.fe-bd-r {
+  z-index: 1;
+  box-shadow: 1px 0 0 0 $--border-color-base;
+}
+.fe-bd-b {
+  box-shadow: inset 0 -1px 0 0 $--border-color-base;
+}
+.fe-bd-l {
+  z-index: 1;
+  box-shadow: -1px 0 0 0 $--border-color-base;
+}
+/*  ---------------------- 模块类 ----------------------  */
+.fe-checkbox-vertical {
+  @extend .fe-flex-column;
+  .el-checkbox + .el-checkbox {
+    margin-top: $gap-sm;
+  }
+  .el-checkbox {
+    margin-right: 0;
+  }
+}
+.fe-btn-outline {
+  border-color: $--color-primary;
+  color: $--color-primary;
+}
+
+/* 时间选择 查询框处理 */
+.fe-select-date {
+  @extend .fe-align-center;
+  // height: 32px;
+  line-height: 1;
+  .el-select .el-input__inner {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+    border-color: $--border-color-base !important;
+    line-height: 1;
+  }
+  .el-date-editor .el-input__inner,
+  .el-range-editor.el-input__inner {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+/* 2个select组合。默认第一个select无交互，内部宽度和排版自行cssc处理 */
+.fe-select-select {
+  display: flex;
+  // height: 32px;
+  line-height: 1; // ? hack上下错位的css异常
+  .el-select:first-child {
+    width: 64px;
+    .el-input__inner {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: 0;
+      border-color: $--border-color-base !important;
+      line-height: 1;
+    }
+  }
+  .el-select:last-child,
+  .el-cascader {
+    .el-input__inner {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      // border-left: 0;
+    }
+  }
+}
+.el-form-item.el-form-item--small {
+  .fe-select-select {
+    .el-cascader .el-input .el-input__inner {
+      height: 32px !important;
+      vertical-align: top;
+    }
+  }
+}
+
+/* 上传和下载组合 */
+.fe-btns-up-download {
+  @extend .fe-flex-center;
+  .el-upload {
+    margin-right: -1px;
+    &:focus {
+      color: #fff;
+    }
+    .el-button {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+  .el-icon-upload {
+    transform: scale(1.5);
+  }
+  &.el-button-group .el-button:last-child .el-icon-upload {
+    transform: scale(1.5) rotate(180deg);
+  }
+}
+
+.fe-input_without-border,
+.fe-trigger-select {
+  .el-input__inner {
+    padding-left: 0;
+    border: 0;
+    color: $--color-primary;
+    background: transparent;
+  }
+}
+.fe-input_without-border .el-input__inner {
+  padding-right: 22px;
+  text-align: right;
+}
+.fe-trigger-select {
+  .el-input__inner {
+    padding-right: 0 !important;
+    text-align: left;
+  }
+  .el-input__suffix {
+    display: none;
+  }
+}
+
+.fe-legend {
+  color: $--color-text-secondary;
+  font-size: $font-sm;
+  white-space: nowrap;
+  li {
+    @extend .fe-align-center;
+  }
+  &.fe-legend-vertical {
+    li + li {
+      margin-top: $gap-xs;
+    }
+  }
+  &.fe-legend-horizontal {
+    @extend .fe-flex-center;
+    li + li {
+      margin-left: $gap-md;
+    }
+  }
+}
+/* 使用自定义legend长方形 */
+.fe-legend-rect {
+  width: 12px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* 正方形legend */
+.fe-legend-square {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+/* 圆形*/
+.fe-legend-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* graph-legend */
+.fe-legend-graph {
+  position: relative;
+  margin: 0 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #31cf9a;
+  background: #fff;
+  &::before,
+  &::after {
+    position: absolute;
+    content: '';
+    width: 5px;
+    height: 2px;
+    top: 2px;
+    background: #31cf9a;
+  }
+  &::before {
+    left: -7px;
+  }
+  &::after {
+    right: -7px;
+  }
+}
+
+.fe-legend-rect,
+.fe-legend-circle,
+.fe-legend-label,
+.fe-legend-square,
+.fe-legend-graph {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  margin-right: $gap-xs;
+}
+
+.el-icon-upload-transform {
+  transform: rotate(180deg);
+}
+
+/* 列表字段展示 */
+.fe-field-items {
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    width: 50%; // * 请在数据结构中设置或者scoped样式重置
+    padding: 0 $gap-sm $gap-md $gap-sm;
+    .fe-field-label {
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .fe-field-value,
+    .fe-field-textarea {
+      background-color: $--background-color-base;
+      border-radius: 4px;
+      padding: 0 8px;
+    }
+    .fe-field-value {
+      line-height: 32px;
+      @extend .fe-text-truncate;
+    }
+    .fe-field-textarea {
+      padding: $gap-sm;
+      line-height: 18px;
+      min-height: 32px;
+    }
+  }
+}
+
+/* input slot 按钮 */
+.fe-input-btn.el-input.el-input-group--append {
+  &:has(.el-input__clear) input {
+    padding-right: 22px;
+  }
+  .el-input-group__append {
+    border-color: $--color-primary;
+  }
+  .el-button {
+    color: #fff;
+    background-color: $--color-primary;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 14px;
+  }
+  &.el-input--mini {
+    .el-input-group__append {
+      padding: 0 16px;
+    }
+    .el-button {
+      padding: 7px 9px;
+      margin: -10px -16px;
+    }
+  }
+}
+
+/* 竖向排列的按钮组 */
+.el-btn-group__vertical {
+  display: flex;
+  flex-direction: column;
+  .el-button--small {
+    padding: 7px;
+    font-size: 16px;
+    i {
+      pointer-events: none;
+    }
+  }
+  > .el-button:first-child {
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 0;
+  }
+  > .el-button:last-child {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 3px;
+  }
+  > .el-button:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: -1px;
+  }
+}
+
+.fe-gis-layer {
+  position: absolute;
+  z-index: 2;
+  top: $gap-md;
+  right: $gap-md;
+}
+.fe-gis-legend {
+  position: absolute;
+  z-index: 2;
+  bottom: $gap-md;
+  left: $gap-md;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+.fe-gis-tool {
+  position: absolute;
+  z-index: 2;
+  top: $gap-md;
+  left: $gap-md;
+}
+// 目前gis工具和图例均紧邻左侧抽屉
+.fe-drawer .fe-gis-legend,
+.fe-drawer .fe-gis-tool {
+  left: 100%;
+  margin-left: $gap-md;
+}
+
+// 取消&确定 footer
+.fe-footer {
+  @extend .fe-bd-t;
+  flex-shrink: 0;
+  text-align: right;
+  padding: $gap-md;
+}
