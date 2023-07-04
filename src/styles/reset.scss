@@ -1,0 +1,1003 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html,
+body,
+.app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  min-width: 1200px;
+  color: $--color-text-regular;
+  background: #f5f9fc;
+  font-family: 'AlibabaPuHuiTi', -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue,
+    Arial, noto sans, sans-serif;
+  //   Arial, noto sans, sans-serif'AlibabaPuHuiTi' !important;
+  // font-family: Avenir, Helvetica, Arial, sans-serif;
+  // font-family: -apple-system, AlibabaPuHuiTi, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue,
+  //   Arial, noto sans, sans-serif;
+  font-size: $font-sm;
+  line-height: 1;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+h3,
+h4,
+h5 {
+  font-weight: 400;
+}
+h3 {
+  font-size: $font-lg;
+  color: $--color-text-primary;
+}
+h4 {
+  font-size: $font-md;
+  color: $--color-text-primary;
+}
+h5 {
+  font-size: $font-sm;
+}
+table,
+th {
+  font-size: inherit;
+  font-weight: inherit;
+}
+button {
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a.download {
+  color: inherit;
+  text-decoration: none;
+}
+
+// *input 控件，当type为number，出现上下箭头，样式调整，详见：https://blog.csdn.net/weixin_36430673/article/details/122467311
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+// input.el-input__inner::-webkit-input-placeholder {
+//   color: $--color-text-placeholder;
+// }
+// *el-popover的样式修改，详见：https://blog.csdn.net/weixin_54351962/article/details/124274603
+.el-popper[x-placement^='left'],
+.el-tooltip__popper[x-placement^='left'] {
+  margin-right: $gap-sm;
+}
+.el-popper[x-placement^='right'],
+.el-tooltip__popper[x-placement^='right'] {
+  margin-left: $gap-sm;
+}
+.el-popper[x-placement^='bottom'],
+.el-tooltip__popper[x-placement^='bottom'] {
+  margin-top: $gap-sm;
+}
+.el-popper[x-placement^='top'],
+.el-tooltip__popper[x-placement^='top'] {
+  margin-bottom: $gap-sm;
+}
+
+.el-backtop {
+  background: rgba(51, 125, 255, 0.1);
+}
+.el-button + .el-button {
+  margin-left: $gap-md;
+}
+.el-breadcrumb {
+  font-size: $font-sm;
+  .el-breadcrumb__separator {
+    margin: 0 $gap-sm;
+    font-weight: normal;
+    color: #c0ccda; // ! 特殊颜色
+  }
+  .el-breadcrumb__inner.is-link {
+    font-weight: 400;
+    color: $--color-text-regular;
+  }
+  .el-breadcrumb__item {
+    .el-breadcrumb__inner {
+      cursor: pointer;
+      &:hover {
+        color: $--color-primary;
+      }
+    }
+    &:last-child {
+      pointer-events: none;
+      .el-breadcrumb__inner {
+        cursor: default;
+        color: $--color-text-secondary;
+      }
+    }
+  }
+}
+
+.el-divider {
+  background-color: #c0ccda;
+}
+.el-divider__text {
+  padding: 0 $gap-md;
+}
+/* 设置tooltip最大宽度，否则table-cell内容过长时用户体验差 */
+.el-tooltip__popper {
+  max-width: 35%;
+  line-height: 1.5;
+}
+
+.el-popover {
+  min-width: 100px;
+  border: 0;
+  line-height: 1.5;
+}
+.el-badge__content {
+  border: 0;
+  height: $gap-lg;
+  line-height: $gap-lg;
+  padding: 0 $gap-sm;
+}
+
+.el-table {
+  z-index: 1;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  &::before {
+    display: none;
+  }
+  tr th:first-child:not(.is-center) .cell,
+  tr td:first-child:not(.is-center) .cell {
+    padding-left: $gap-md;
+  }
+  // 滚筒条有gutter
+  tr:not(:has(.gutter)) th:last-child:not(.is-center) .cell,
+  tr td:last-child:not(.is-center) .cell {
+    padding-right: $gap-md;
+  }
+
+  &.el-table--group {
+    border: 0;
+    .el-table__header-wrapper,
+    .el-table__fixed-header-wrapper {
+      height: auto !important;
+    }
+    .el-table__header th.el-table__cell .cell {
+      line-height: 1.2; // 表头跨行时可以允许换行
+    }
+    &.el-table--border td.el-table__cell {
+      border-right: 0;
+    }
+  }
+  th.el-table__cell.is-sortable:hover {
+    background-color: #f0f0f0;
+    // background-color: rgba(0, 0, 0, 0.1);
+  }
+  th.el-table__cell.is-leaf {
+    border-bottom: 0;
+  }
+  .el-table__fixed-right-patch {
+    background-color: $--background-color-base;
+    border-bottom: 0;
+  }
+  .el-table__empty-block {
+    height: auto !important;
+  }
+  .el-table__empty-text {
+    // 让暂无数据占位字符在可视区内显示
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    color: #7b93a7;
+    margin-top: -20px;
+    padding-top: 100px;
+    transform: translate(-50%, -50%);
+    background-image: url('~@/assets/imgs/empty.png');
+    background-size: cover;
+  }
+  .el-table__body-wrapper {
+    z-index: 2; /* fix 左侧固定的时候遮挡了原始的滚动条无法拖动 */
+    min-height: 160px;
+  }
+  .el-table__body-wrapper.is-scrolling-right ~ .el-table__fixed,
+  .el-table__body-wrapper.is-scrolling-middle ~ .el-table__fixed,
+  .el-table__body-wrapper.is-scrolling-left ~ .el-table__fixed-right,
+  .el-table__body-wrapper.is-scrolling-middle ~ .el-table__fixed-right {
+    z-index: 3; /* 保证fixed shadow */
+  }
+  &.el-table--scrollable-x {
+    .el-table__fixed,
+    .el-table__fixed-right {
+      height: auto !important;
+      bottom: 15px;
+    }
+  }
+  .el-table__fixed::before,
+  .el-table__fixed-right::before {
+    display: none;
+    height: 0;
+  }
+  th.el-table__cell {
+    background-color: $--background-color-base;
+  }
+  .el-table__cell {
+    padding: 0;
+    .el-button--mini {
+      // * 为table内按钮减少左右留白
+      padding: 5px 7px;
+    }
+  }
+  .el-table__cell.is-sortable {
+    .cell {
+      white-space: nowrap;
+      padding-right: 0 !important;
+    }
+  }
+  &.el-table--small {
+    thead th.is-sortable {
+      padding: 3px 0; // 排序箭头高度34px,th高度40，所有padding-top:3
+    }
+    th.el-table__cell {
+      height: 40px;
+    }
+    .el-table__header-wrapper,
+    .el-table__fixed-header-wrapper {
+      height: 40px; // fix column变化更新渲染异常
+      overflow: hidden;
+    }
+    .el-table__cell {
+      height: 40px;
+    }
+  }
+  // el-table 的 selection 中的 checkbox 没对齐
+  .el-table-column--selection .cell,
+  .cell,
+  th.el-table__cell > .cell {
+    padding-left: $gap-sm;
+    padding-right: $gap-sm;
+  }
+  .el-table__expand-icon {
+    pointer-events: none;
+  }
+
+  .el-table__body {
+    td {
+      position: relative;
+    }
+    // tr:nth-child(even) {
+    //   background-color: $--background-color-base;
+    // }
+    tr.current-row td:first-child:before {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 3px;
+      background: $--color-primary;
+    }
+    tr.current-row > td {
+      background-color: $background-color-active;
+    }
+    tr.hover-row td {
+      background-color: $background-color-active;
+    }
+  }
+  &.el-table--mini {
+    .el-table__header-wrapper,
+    .el-table__fixed-header-wrapper {
+      height: 32px; // fix column变化更新渲染异常
+      overflow: hidden;
+    }
+    .el-table__cell {
+      height: 32px;
+      font-size: $font-sm;
+      .cell {
+        line-height: 20px;
+        padding-left: $gap-xs;
+        padding-right: $gap-xs;
+      }
+    }
+  }
+}
+
+.el-message {
+  max-width: 70%;
+  top: 32px !important;
+  .el-message__content {
+    @extend .fe-text-truncate;
+  }
+}
+.el-message-box {
+  border: 0;
+  padding-bottom: $gap-md;
+  .el-message-box__header {
+    padding: $gap-md;
+  }
+  .el-message-box__content {
+    padding: $gap-md;
+  }
+  .el-message-box__btns {
+    padding: $gap-sm $gap-md 0;
+  }
+}
+
+.el-popconfirm__main {
+  margin-top: $gap-xs;
+  margin-bottom: $gap-lg;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.el-drawer {
+  min-width: 320px;
+  &.btt {
+    max-width: 100%;
+  }
+  .el-drawer__header {
+    padding: $gap-md;
+    margin-bottom: 0;
+    font-size: $font-md;
+    @extend .fe-bd-b;
+    color: $--color-text-primary;
+  }
+  .el-drawer__close-btn {
+    font-size: $font-lg;
+  }
+}
+
+/* el-dialog  默认居中*/
+.el-dialog__wrapper {
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.el-dialog {
+  margin-top: 0 !important;
+  min-width: 480px;
+  width: 60%;
+  max-width: 1200px;
+  @extend .fe-flex-column;
+  min-height: 100px;
+  max-height: calc(100vh - 100px);
+  border-radius: 4px;
+  overflow: hidden;
+  .el-dialog__header {
+    flex-shrink: 0;
+    padding: $gap-md;
+    @extend .fe-bd-b;
+  }
+  .el-dialog__title {
+    font-weight: 500;
+    color: $--color-text-regular;
+  }
+  .el-dialog__body {
+    padding: 0;
+  }
+  .el-dialog__footer {
+    flex-shrink: 0;
+    padding: $gap-md;
+    @extend .fe-bd-t;
+  }
+}
+.el-dialog.is-fullscreen {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100vh;
+}
+.el-message-box__headerbtn,
+.el-dialog__headerbtn {
+  // top: 10px;
+  right: 10px;
+}
+
+/* fix 时间选择器clear位置bug */
+.el-date-editor.el-range-editor--small,
+.el-date-editor.el-range-editor {
+  padding-right: 0;
+  .el-range-input {
+    width: calc((100% - 60px) / 2);
+    text-align: left;
+    color: $--color-text-primary;
+  }
+  .el-range-separator {
+    padding: 0;
+    margin: 0 $gap-sm;
+    color: $--color-text-secondary;
+  }
+}
+
+.el-select .el-input__inner {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* reset input内部留白 */
+.el-input__inner,
+.el-range-editor.el-input__inner {
+  padding-left: $gap-sm;
+  padding-right: $gap-sm;
+  transition: none; /* 解决由disbaled切换边框过度 */
+}
+.el-input .el-input__inner,
+.el-date-editor .el-input__inner {
+  padding-right: $gap-sm;
+}
+.el-input.el-input--suffix:has(.el-icon-circle-close) {
+  // 针对input clearable功能宽度适配，对placeholder友好
+  .el-input__inner {
+    padding-right: 22px;
+  }
+}
+/* input slot */
+.el-input-group__append,
+.el-input-group__prepend {
+  background-color: #fff;
+  color: $--color-text-regular;
+}
+.el-input__prefix {
+  left: 2px;
+}
+.el-input__suffix {
+  right: 2px;
+}
+.el-input--suffix:has(.el-input__suffix) .el-input__inner {
+  padding-right: 22px;
+}
+.el-input--prefix .el-input__inner {
+  padding-left: 22px;
+}
+.el-input__icon,
+.el-date-editor .el-range__close-icon {
+  width: 22px;
+  transition: none;
+}
+
+.el-alert {
+  padding: $gap-sm $gap-md;
+  .el-alert__content {
+    padding: 0;
+  }
+}
+
+.el-textarea__inner {
+  padding: ($gap-md/2) $gap-sm;
+}
+
+/*  collapse-tags模式下的不换行显示 */
+.el-cascader__tags,
+.el-select__tags {
+  max-width: calc(100% - 24px) !important;
+  flex-wrap: nowrap;
+  .el-select__input,
+  .el-cascader__search-input {
+    margin-left: $gap-sm;
+  }
+  .el-tag:first-child {
+    min-width: 30px;
+    padding-right: 16px;
+    margin-left: $gap-sm;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .el-tag:has(.el-tag__close) {
+    letter-spacing: 0;
+  }
+  .el-tag {
+    // flex-shrink: 0;
+    position: relative;
+    border: 0;
+    height: 20px;
+    line-height: 20px;
+    letter-spacing: -1px;
+    background: $--background-color-base;
+    border: 1px solid $--border-color-base;
+    color: $--color-text-primary;
+  }
+  .el-tag .el-tag__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: $--color-text-primary;
+    background: transparent;
+    transform: scale(0.95);
+    line-height: 17px;
+    &:hover {
+      color: inherit;
+      background: inherit;
+    }
+  }
+}
+
+/* hack适配el-select在tag模式下hover边缘才出现clear按钮 */
+.el-select__tags {
+  pointer-events: none;
+}
+.el-select__tags .el-tag .el-tag__close {
+  pointer-events: auto;
+  cursor: pointer;
+}
+.el-select-dropdown__item {
+  padding: 0 $gap-md;
+}
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected::after {
+  right: 12px;
+}
+.el-select-dropdown.is-multiple .el-select-dropdown__item {
+  padding-right: 30px;
+}
+.el-select--small,
+.el-range-editor--small {
+  height: 32px;
+}
+.el-cascader-node {
+  padding: 0 30px 0 $gap-md;
+  .el-checkbox {
+    margin-left: 6px;
+  }
+}
+.el-cascader-node__prefix {
+  left: calc(100% - 22px);
+}
+
+.el-checkbox-group,
+.el-radio-group {
+  .el-checkbox,
+  .el-radio {
+    display: inline-flex;
+    align-items: center;
+    margin-right: $gap-md;
+    .el-checkbox__label,
+    .el-radio__label {
+      padding-left: 4px;
+      line-height: 1;
+    }
+  }
+}
+.el-radio {
+  margin-right: $gap-md;
+}
+
+.el-form.el-form--label-left {
+  .el-form-item--small {
+    .el-form-item__label {
+      padding-bottom: 0;
+      line-height: 32px;
+    }
+  }
+}
+
+.el-form--label-top .el-form-item--small .el-form-item__label {
+  line-height: 1;
+  padding-bottom: $gap-sm;
+}
+/* mini formItem */
+.el-form-item--mini.el-form-item {
+  margin-bottom: $gap-md;
+}
+.el-form-item--mini .el-form-item__label {
+  line-height: 1;
+  padding-bottom: $gap-xs;
+  font-size: $font-sm;
+}
+.el-form-item.is-required {
+  margin-bottom: $gap-lg !important;
+}
+/* 通过外层style控制 */
+.el-date-editor.el-input,
+.el-date-editor.el-input__inner,
+.el-date-editor--monthrange.el-input,
+.el-date-editor--monthrange.el-input__inner,
+.el-date-editor--daterange.el-input,
+.el-date-editor--daterange.el-input__inner,
+.el-date-editor--timerange.el-input,
+.el-date-editor--timerange.el-input__inner,
+.el-date-editor--datetimerange.el-input,
+.el-date-editor--datetimerange.el-input__inner,
+.el-cascader,
+.el-select,
+.el-input-number,
+.el-autocomplete {
+  width: 100%;
+}
+
+.el-timeline .el-timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/*  穿梭框相关样式重置 */
+.el-transfer {
+  @extend .fe-flex-between;
+  .el-transfer-panel {
+    width: 42%;
+  }
+  .el-transfer-panel__header {
+    padding: 0 $gap-md;
+    background-color: $--background-color-base;
+    @extend .fe-align-center;
+    .el-checkbox {
+      @extend .fe-flex-grow;
+      @extend .fe-align-center;
+      .el-checkbox__label {
+        @extend .fe-flex-grow;
+        font-size: $font-md;
+        span {
+          right: 0;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+  .el-transfer-panel__body {
+    min-height: 360px;
+    .el-transfer-panel__item {
+      padding-left: $gap-md;
+      margin-right: $gap-md;
+      .el-checkbox__label {
+        padding-left: 24px;
+        line-height: 30px;
+      }
+    }
+  }
+  .el-transfer-panel__filter {
+    margin: $gap-md;
+    .el-input__icon {
+      margin-left: 0;
+    }
+  }
+  .el-transfer__buttons {
+    @extend .fe-flex-column;
+    @extend .fe-flex-center;
+    padding: 0 $gap-lg;
+    .el-button {
+      display: block;
+      margin: 0;
+      margin-bottom: $gap-md;
+      padding: 6px 24px;
+    }
+  }
+}
+
+.el-tabs--left .el-tabs__header.is-left {
+  margin-right: 0;
+  .el-tabs__nav-wrap::after {
+    width: 1px;
+  }
+  .el-tabs__item {
+    height: 32px;
+    line-height: 32px;
+  }
+}
+.el-tabs__header.is-left {
+  z-index: 3;
+}
+
+.el-badge__content.is-dot {
+  width: 6px;
+  height: 6px;
+}
+
+.el-scrollbar__bar.is-vertical {
+  width: 4px;
+  .el-scrollbar__thumb {
+    background-color: rgba(144, 147, 153, 0.3);
+  }
+}
+
+/* 上传组件el-upload样式reset */
+.el-upload-list__item {
+  line-height: 1;
+  background: $--background-color-base;
+}
+.el-upload-list__item-name {
+  font-size: $font-sm;
+  line-height: 22px;
+  padding-left: $gap-xs;
+}
+.el-upload-list__item-status-label {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.el-upload-list.el-upload-list--text {
+  .el-upload-list__item-name {
+    margin-right: 24px;
+  }
+}
+.el-upload-list__item.el-list-enter-to,
+.el-upload-list__item.el-list-enter-active,
+.el-upload-list__item.el-list-leave-to {
+  transition: none;
+}
+.el-upload-list__item:first-child {
+  margin-top: $gap-sm;
+}
+
+.el-time-panel.el-popper {
+  width: 160px;
+  .el-time-panel__content:after {
+    display: none;
+  }
+  .el-time-panel__content:before {
+    margin-top: -8px; // ? 这个版本问题？时分秒选中没有在垂直居中的位置
+  }
+}
+
+.el-month-table {
+  .current .cell {
+    background-color: $--color-primary;
+  }
+  td.current:not(.disabled) .cell {
+    color: #fff;
+  }
+}
+
+.el-loading-parent--relative {
+  z-index: 1;
+}
+
+.el-select-dropdown__item.selected {
+  font-weight: 400;
+}
+
+.el-picker-panel__footer {
+  padding-right: 8px;
+  .el-button {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .el-button--text {
+    color: inherit;
+  }
+  .el-button--default {
+    border: 0;
+    color: $--color-primary;
+  }
+}
+.el-time-panel__footer {
+  .el-time-panel__btn {
+    margin: 0;
+  }
+}
+.el-time-panel__btn.confirm {
+  font-weight: 400;
+}
+.el-date-range-picker__time-header .el-icon-arrow-right {
+  font-size: 12px;
+  padding: 0 6px;
+}
+.el-picker-panel.el-popper,
+.el-select-dropdown.el-popper,
+.el-cascader__dropdown.el-popper {
+  margin-top: 4px;
+  .popper__arrow {
+    display: none;
+  }
+}
+// 统一时间icon在右侧
+.el-date-editor {
+  .el-range__icon {
+    color: $--color-text-secondary;
+  }
+  .el-range__close-icon,
+  .el-range__icon,
+  .el-input__prefix {
+    position: absolute;
+    left: auto;
+    right: 2px;
+    transition: none;
+    height: auto;
+  }
+  &.el-input--prefix .el-input__inner {
+    padding-left: 8px;
+  }
+  .el-input__suffix-inner,
+  .el-range__close-icon.el-icon-circle-close {
+    background: #fff;
+  }
+  .el-range__close-icon {
+    color: $--color-text-regular;
+    font-size: $font-sm;
+  }
+  .el-range__close-icon.el-icon-circle-close {
+    padding-top: 1px;
+  }
+}
+
+.el-input-number.is-without-controls .el-input__inner {
+  padding-left: $gap-sm;
+  padding-right: $gap-sm;
+}
+
+// 手动实现active 类似selected效果
+.el-dropdown-menu__item.active {
+  color: $--color-primary;
+}
+
+/*  ---------------------- ele类 ----------------------  */
+
+/* 新增ele-，代表对原始组件的二次封装 */
+.ele-pager {
+  z-index: 1;
+  position: relative;
+  text-align: right;
+
+  .el-pagination__total {
+    margin-right: $gap-sm;
+  }
+  .el-pagination.is-background {
+    font-weight: 400;
+    padding: 0;
+
+    .el-pagination__sizes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      .el-select .el-input {
+        width: 80px;
+        margin: 0;
+      }
+      .el-input__inner {
+        height: 32px;
+        line-height: 32px;
+      }
+    }
+    .el-pagination__jump {
+      margin-left: $gap-sm;
+      color: $--color-text-primary;
+    }
+    .el-input__suffix-inner {
+      pointer-events: none;
+    }
+    .el-pagination__total {
+      color: $--color-text-primary;
+    }
+    .el-pager li,
+    .btn-prev,
+    .btn-next {
+      color: $--color-text-primary;
+      background: #fff;
+      border: 1px solid $--border-color-base;
+      margin: 0 6px;
+      border-radius: 4px;
+    }
+    .el-pager li {
+      padding: 0 6px;
+    }
+    .el-pager li:not(.disabled).active,
+    .el-pager li:hover {
+      border-color: $--color-primary;
+    }
+  }
+  &:not(:has(.el-pagination--small)) {
+    .el-pager li,
+    .btn-prev,
+    .btn-next {
+      min-width: 32px;
+    }
+  }
+  .el-pagination--small {
+    margin-right: -6px;
+  }
+  .el-pagination.is-background.el-pagination--small {
+    .el-pager li,
+    .btn-prev,
+    .btn-next {
+      margin: 0;
+      line-height: 20px;
+      border-color: transparent;
+    }
+    .more::before,
+    li.more::before {
+      line-height: 20px;
+    }
+  }
+  .btn-prev:not([disabled='disabled']):hover,
+  .btn-next:not([disabled='disabled']):hover {
+    color: $--color-primary;
+    border-color: $--color-primary;
+  }
+}
+
+/* element 模拟实现垂直滚动条 需加在<el-scrollbar>组件父元素 */
+.ele-scrollbar-vertical {
+  .el-scrollbar__wrap {
+    overflow-x: hidden;
+  }
+  .el-scrollbar,
+  .el-scrollbar__view {
+    /* 在view内部配合min-height实现在屏幕高度不够时内部滚动，显示屏大屏时底部充满(通常为table高度铺满) */
+    // e.g. <el-scrollbar><div style="min-height:680px;height:100%;">
+    height: 100%;
+  }
+  .el-scrollbar__bar {
+    &.is-horizontal {
+      display: none;
+    }
+  }
+}
+
+/* 为 el-drawer父元素添加ele-drawer-in，使得抽屉在父元素内显示 可见站址规划-筛选 */
+.ele-drawer-in {
+  position: relative;
+  .el-drawer__wrapper,
+  .v-modal {
+    position: absolute;
+    .el-drawer {
+      width: 100%;
+    }
+    .el-drawer .el-drawer__header {
+      height: $height-md;
+      padding: 8px 12px;
+    }
+  }
+}
+// 不在头部导航的抽屉 仅在右侧位置使用 (可scroll的页面)
+.ele-fixed-drawer.el-drawer {
+  top: $height-nav;
+  height: auto;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+}
+
+// retina业务小时 不现身分钟，需要为DateTimePicker设置popper-class
+.ele-hour-picker {
+  .el-time-panel {
+    width: 150px;
+    .el-time-spinner {
+      .el-time-spinner__wrapper {
+        display: none;
+        &:first-child {
+          display: inline-block;
+          width: 100%;
+        }
+        .el-time-spinner__item {
+          margin: 0 12%;
+        }
+      }
+    }
+  }
+}
+
+.el-notification {
+  padding: $gap-md;
+  .el-notification__group {
+    margin: 0;
+  }
+  .el-notification__closeBtn {
+    top: $gap-sm;
+    right: $gap-md;
+  }
+}
+
+/* 单选按钮组plain模式，常用与指标配置颜色选择 */
+.ele-btns-plain {
+  .is-active {
+    .el-radio-button__inner {
+      color: inherit !important;
+      background: inherit !important;
+    }
+  }
+}
